@@ -1,0 +1,16 @@
+[Unit]
+Description=MQTT to I2C LED control daemon
+
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=<YOUR-PATH>
+ExecStart=<YOUR-PATH>/venv/bin/python -u main.py
+StandardOutput=journal
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
