@@ -66,7 +66,7 @@ def initialize():
                 device_id = parser.get(section_name, OPTION_ID, fallback=None)
                 device_pins = literal_eval(parser.get(section_name, OPTION_PINS, fallback=None))
                 device_base_topic = parser.get(section_name, OPTION_BASE_TOPIC, fallback=None)
-                device_value_range = parser.get(section_name, OPTION_VALUE_RANGE, fallback=None)
+                device_value_range = parser.getint(section_name, OPTION_VALUE_RANGE, fallback=None)
 
                 ColorLightHandler(mqtt_conn, pwm, mqtt_basetopic=device_base_topic,
                                   id=device_id, channel_ids=device_pins, value_range=device_value_range)
@@ -79,7 +79,7 @@ def initialize():
                 device_id = parser.get(section_name, OPTION_ID, fallback=None)
                 device_pin = parser.getint(section_name, OPTION_PIN, fallback=None)
                 device_base_topic = parser.get(section_name, OPTION_BASE_TOPIC, fallback=None)
-                device_value_range = parser.get(section_name, OPTION_VALUE_RANGE, fallback=None)
+                device_value_range = parser.getint(section_name, OPTION_VALUE_RANGE, fallback=None)
 
                 DimmableLightHandler(mqtt_conn, pwm, mqtt_basetopic=device_base_topic,
                                      id=device_id, channel_id=device_pin, value_range=device_value_range)
