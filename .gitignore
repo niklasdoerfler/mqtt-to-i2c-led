@@ -72,6 +72,7 @@ fabric.properties
 
 # Python virtual environment
 venv/
+__pycache__/
 
 # Config file
 config.ini
