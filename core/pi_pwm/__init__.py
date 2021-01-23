@@ -22,6 +22,9 @@ class PiPwm:
     def set_pwm_channel_value(self, pwm_channel_id: int, pwm_channel_value: int):
         self.__set_pwm_value(pwm_channel_id, pwm_channel_value)
 
+    def set_pwm_channel_percentage_value(self, pwm_channel_id: int, pwm_channel_percentage: float):
+        self.__set_pwm_value(pwm_channel_id, int(pwm_channel_percentage * 4095))
+
     def set_pwm_channel_bool(self, pwm_channel_id: int, pwm_channel_active: bool):
         if pwm_channel_active is True:
             self.__set_pwm_value(pwm_channel_id, 4095)
