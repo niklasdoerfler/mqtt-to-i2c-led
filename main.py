@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import time
 import logging
 
 from configparser import ConfigParser
@@ -111,3 +112,6 @@ def initialize():
 
 if __name__ == "__main__":
     initialize()
+
+    while True:
+        time.sleep(2)
