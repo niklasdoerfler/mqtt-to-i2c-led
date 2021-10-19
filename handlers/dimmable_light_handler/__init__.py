@@ -44,7 +44,7 @@ class DimmableLightHandler:
 
         logging.debug("Start fading for light '%s'...", self.__id)
         self.__stop_thread_trigger = False
-        self.__fade_thread = Thread(target=self.__do_fade, args=((brightness,), lambda: self.__stop_thread_trigger))
+        self.__fade_thread = Thread(target=self.__do_fade, args=((brightness,) * len(self.__channel_ids), lambda: self.__stop_thread_trigger))
         self.__fade_thread.start()
 
     def get_current_brightness(self):
