@@ -67,10 +67,11 @@ class DimmableLightHandler:
     def __handle_brightness_command(self, message):
         msg = str(message.decode("utf-8"))
         logging.debug("Handle color command for light %s: %s", self.__id, msg)
-        value = int(msg)
-        self.__last_state_rgb_values = (value,)
-        if self.__light_state_on:
-            self.fade_to_brightness(value)
+        if msg.isnumeric():
+            value = int(msg)
+            self.__last_state_rgb_values = (value,)
+            if self.__light_state_on:
+                self.fade_to_brightness(value)
 
     def __stop_fading(self):
         if self.is_fading():
