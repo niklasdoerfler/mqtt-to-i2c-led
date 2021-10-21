@@ -7,6 +7,7 @@ from core.mqtt_connector import MqttConnector
 from utils import logarithmic_fade
 
 FADE_STEPS = 60
+LOGARITHMIC_FADE_BASE = 5
 
 MQTT_TOPIC_BRIGHTNESS_SUFFIX = "brightness"
 MQTT_TOPIC_POWER_SUFFIX = "power"
@@ -93,7 +94,7 @@ class DimmableLightHandler:
             for i in range(0, len(self.__current_rgb_values)):
                 value = int(initial[i] + (step + 1) * (diff[i] / FADE_STEPS))
                 current = current + (value,)
-                logarithmic_value = logarithmic_fade(value, 4095, 4095)
+                logarithmic_value = logarithmic_fade(value, 4095, 4095, LOGARITHMIC_FADE_BASE)
                 self.__pwm.set_pwm_channel_value(self.__channel_ids[i], value)
             self.__current_rgb_values = current
 
