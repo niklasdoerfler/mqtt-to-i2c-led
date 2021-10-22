@@ -95,7 +95,7 @@ class DimmableLightHandler:
                 value = int(initial[i] + (step + 1) * (diff[i] / FADE_STEPS))
                 current = current + (value,)
                 logarithmic_value = logarithmic_fade(value, 4095, 4095, LOGARITHMIC_FADE_BASE)
-                self.__pwm.set_pwm_channel_value(self.__channel_ids[i], value)
+                self.__pwm.set_pwm_channel_value(self.__channel_ids[i], logarithmic_value)
             self.__current_rgb_values = current
 
             if stop():
