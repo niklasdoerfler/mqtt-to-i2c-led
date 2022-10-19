@@ -85,7 +85,7 @@ class ColorLightHandler:
     def __handle_brightness_command(self, message):
         brightness_state = str(message.decode("utf-8"))
         logging.debug("Handle brightness command for light %s: %s", self.__id, brightness_state)
-        new_brightness = float(brightness_state / self.__value_range)
+        new_brightness = float(brightness_state) / self.__value_range
 
         self.__last_state_brightness = new_brightness
         if self.__light_state_on:
