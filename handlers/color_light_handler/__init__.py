@@ -4,8 +4,10 @@ from threading import Thread
 
 from core.pi_pwm import PiPwm
 from core.mqtt_connector import MqttConnector
+from utils import logarithmic_fade
 
 FADE_STEPS = 60
+LOGARITHMIC_FADE_BASE = 5
 
 MQTT_TOPIC_COLOR_SUFFIX = "color"
 MQTT_TOPIC_POWER_SUFFIX = "power"
@@ -110,7 +112,8 @@ class ColorLightHandler:
             for i in range(0, len(self.__current_rgb_values)):
                 value = int(initial[i] + (step + 1) * (diff[i] / FADE_STEPS))
                 current = current + (value,)
-                self.__pwm.set_pwm_channel_value(self.__channel_ids[i], value)
+                logarithmic_value = logarithmic_fade(value, 4095, 4095, LOGARITHMIC_FADE_BASE)
+                self.__pwm.set_pwm_channel_value(self.__channel_ids[i], logarithmic_value)
             self.__current_rgb_values = current
 
             if stop():
