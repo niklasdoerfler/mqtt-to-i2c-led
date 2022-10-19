@@ -43,7 +43,7 @@ Each device section consists of the option `type`, which specifies if the device
 
 | `type`         | Description                                                                                     | Required options                                                                                                                                                                 | Topics                                                               |
 |----------------|-------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| color-light    | Represents a color light (e.g. a LED color strip), using three pwm channel (one foreach color). | - pins: defines the pwm channels <br />- id: name part of the mqtt topic <br />- basetopic: prefix part of the mqtt topic <br />- value_range: value for maximum brightness      | - *{basetopic}*/*{id}*/power <br />- *{basetopic}*/*{id}*/color      |
+| color-light    | Represents a color light (e.g. a LED color strip), using three pwm channel (one foreach color). | - pins: defines the pwm channels <br />- id: name part of the mqtt topic <br />- basetopic: prefix part of the mqtt topic <br />- value_range: value for maximum brightness (and color)      | - *{basetopic}*/*{id}*/power <br />- *{basetopic}*/*{id}*/color <br />- *{basetopic}*/*{id}*/brightness      |
 | dimmable-light | Represents a dimmable light (e.g. a LED strip), using one pwm channel.                          | - pin: defines the pwm channel <br />- id: name part of the mqtt topic <br />- basetopic: prefix part of the mqtt topic <br />- value_range: value for maximum brightness        | - *{basetopic}*/*{id}*/power <br />- *{basetopic}*/*{id}*/brightness |
 | on-off         | Represents a simple on/off switch, using one pwm channel.                                       | - pin: defines the pwm channel <br />- id: name part of the mqtt topic <br />- basetopic: prefix part of the mqtt topic                                                          | - *{basetopic}*/*{id}*/power                                         |
 | pir            | Represents a pir sensor, sending its state via mqtt message when it gets triggered.             | - gpio: defines the gpio pin connected to the sensor <br />- id: name part of the mqtt topic <br />- basetopic: prefix part of the mqtt topic                                    | - *{basetopic}*/*{id}*/power                                         |
@@ -94,7 +94,6 @@ To run the project manually, you can execute the following:
 
 ```bash
 venv/bin/python main.py
-
 ```
 
 ### Service mode
